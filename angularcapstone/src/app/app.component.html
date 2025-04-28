@@ -3,7 +3,8 @@
   <img [src]="user.photoURL" alt="User Photo" width="100">
   <button (click)="logout()">Logout</button>
 </div>
-
 <ng-template #loginTemplate>
-  <button (click)="login()">Login with Google</button>
+  <div class="login-container">
+    <button (click)="login()">Login with Google</button>
+  </div>
 </ng-template>
