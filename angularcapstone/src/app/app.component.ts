@@ -1,11 +1,23 @@
 import { Component } from '@angular/core';
-
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
   standalone: false,
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'angularcapstone';
+  user: firebase.User | null = null;
+  constructor(private afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe((user) => {
+      this.user = user;
+    });
+  }
+  login() {
+    this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+  logout() {
+    this.afAuth.signOut();
+  }
 }
