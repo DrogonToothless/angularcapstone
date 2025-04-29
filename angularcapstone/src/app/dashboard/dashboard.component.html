@@ -1,1 +1,22 @@
-<p>dashboard works</p>
+<section class="dashboard">
+  <div class="mymovies">
+    <h2>My Movies</h2>
+    <div class="movie-list">
+      <ul>
+        <li *ngFor="let movie of myMovies">
+          {{ movie.title }} ({{ movie.year }})
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="watchlist">
+    <h2>Watchlist</h2>
+    <div class="movie-list">
+      <ul>
+        <li *ngFor="let movie of watchlist">
+          {{ movie.title }} ({{ movie.year }})
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
