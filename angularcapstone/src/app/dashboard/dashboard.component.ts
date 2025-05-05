@@ -1,22 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-
+import { Component, OnInit, EnvironmentInjector, inject, runInInjectionContext } from '@angular/core';
+import { CommonModule, NgFor } from '@angular/common';
+import { from } from 'rxjs';
 @Component({
   selector: 'app-dashboard',
-  standalone: false,
+  standalone: true,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
+  imports: [CommonModule, NgFor],
 })
 export class DashboardComponent implements OnInit {
   myMovies: string[] = [];
   watchlist: string[] = [];
   userEmail: string | null = null;
-  constructor(private firestore: AngularFirestore, private afAuth: AngularFireAuth) {}
+  private environmentInjector = inject(EnvironmentInjector);
+  users: any;
   ngOnInit(): void {
-    this.firestore.collection('users').valueChanges().subscribe((data) => {
-      console.log('Firestore users:', data);
+    runInInjectionContext(this.environmentInjector, () => {
+      return from(this.users.ref
+        .where('email', '==', this.userEmail)
+        .get().then((querySnapshot: any[]) => {
+          querySnapshot.forEach((doc) => {
+            this.myMovies = doc.data().myMovies || [];
+            this.watchlist = doc.data().watchlist || [];
+          });
+        }));
     });
   }
-  
 }

@@ -14,18 +14,13 @@ export class AppComponent {
     this.afAuth.authState.subscribe((user) => {
       console.log('Auth State:', user);
       this.user = user;
-      if (user) {
-        this.router.navigate(['/dashboard']);
-      }
     });
   }
-
   login() {
     this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
-
   logout() {
     this.afAuth.signOut();
-    this.router.navigate(['/']); // Use the injected Router service
+    this.router.navigate(['/']);
   }
 }
