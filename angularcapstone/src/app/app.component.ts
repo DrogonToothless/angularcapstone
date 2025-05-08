@@ -14,6 +14,11 @@ export class AppComponent {
     this.afAuth.authState.subscribe((user) => {
       console.log('Auth State:', user);
       this.user = user;
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+      } else {
+        localStorage.removeItem('user');
+      }
     });
   }
   login() {
