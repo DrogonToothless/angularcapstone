@@ -7,6 +7,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environment/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFirestoreModule,
+    DashboardComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

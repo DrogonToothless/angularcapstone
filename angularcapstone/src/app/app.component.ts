@@ -15,17 +15,17 @@ export class AppComponent {
       console.log('Auth State:', user);
       this.user = user;
       if (user) {
-        this.router.navigate(['/dashboard']);
+        localStorage.setItem('user', JSON.stringify(user));
+      } else {
+        localStorage.removeItem('user');
       }
     });
   }
-
   login() {
     this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
-
   logout() {
     this.afAuth.signOut();
-    this.router.navigate(['/']); // Use the injected Router service
+    this.router.navigate(['/']);
   }
 }
