@@ -16,6 +16,7 @@ export class AppComponent {
       this.user = user;
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['/dashboard']);
       } else {
         localStorage.removeItem('user');
       }

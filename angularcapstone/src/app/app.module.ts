@@ -8,10 +8,12 @@ import { environment } from '../environment/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
