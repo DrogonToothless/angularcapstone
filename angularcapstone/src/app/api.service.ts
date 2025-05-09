@@ -56,4 +56,7 @@ export class ApiService {
       );
   }
 
+  getMovieDetails(id: string) {
+    return this.http.get<Movie>(`${this.apiUrl}/movie/${id}`);
+  }
 }
