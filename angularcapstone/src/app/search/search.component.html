@@ -1,0 +1,29 @@
+<div class="search-bar">
+  <mat-form-field class="search-form-field" appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" (keyup)="onSearch($event)" placeholder="Enter search term">
+    <button mat-icon-button matSuffix aria-label="Clear" (click)="clearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<ul *ngIf="searchResults && searchResults.results.length" class="search-results">
+  <li *ngFor="let movie of searchResults.results" class="search-result-movie">
+    <mat-card class="movie-card">
+      <mat-card-header class="movie-card-header">
+        <mat-card-title class="movie-card-title">{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle class="movie-card-subtitle">{{ movie.release_date | date: 'longDate' }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="{{ movie.title }}" *ngIf="movie.poster_path" class="movie-card-poster">
+      <mat-card-content class="movie-card-content">
+        <p class="movie-card-overview">{{ movie.overview }}</p>
+      </mat-card-content>
+      <mat-card-actions class="movie-card-actions">
+        <button mat-button color="primary" (click)="goToMovieDetails(movie.id)">View Details</button>
+        <button mat-button color="warn" (click)="addToWatchlist(movie)">Add to Watchlist</button>
+        <button mat-button color="accent" (click)="addToFavorites(movie)">Add to Favorites</button>
+      </mat-card-actions>
+    </mat-card>
+  </li>
+</ul>
