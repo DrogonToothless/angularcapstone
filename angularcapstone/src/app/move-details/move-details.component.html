@@ -1,0 +1,13 @@
+<div class="movie-details" *ngIf="movie">
+  <button routerLink="/search">Back to Search</button>
+  <div class="details-content">
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }} poster">
+    <div class="details-text">
+      <h1>{{ movie.title }}</h1>
+      <p>{{ movie.overview }}</p>
+      <p>Release Date: {{ movie.release_date | date }}</p>
+      <p>Runtime: {{ movie.runtime }} minutes</p>
+      <p>Rating: {{ movie.vote_average }}/10</p>
+    </div>
+  </div>
+</div>

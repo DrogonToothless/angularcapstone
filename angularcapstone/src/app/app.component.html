@@ -1,6 +1,9 @@
 <div *ngIf="user; else loginTemplate">
   <p>Welcome, {{ user.displayName }}!</p>
   <button (click)="logout()">Logout</button>
+  <nav>
+    <a routerLink="/search">Search</a>
+  </nav>
 </div>
 <ng-template #loginTemplate>
   <div class="login-container">
