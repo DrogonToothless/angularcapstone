@@ -57,6 +57,13 @@ export class ApiService {
   }
 
   getMovieDetails(id: string) {
-    return this.http.get<Movie>(`${this.apiUrl}/movie/${id}`);
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + environment.tmdbApi.apiKey,
+      }
+    }
+    return this.http.get<Movie>(`${this.apiUrl}/movie/${id}`, options);
   }
 }
